@@ -1,0 +1,6 @@
+{
+  "name": "External Workspace Manager",
+  "description": "Desktop storage and workspace management platform for routing AI workspaces, caches, models, and projects to external drives and cloud storage.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
