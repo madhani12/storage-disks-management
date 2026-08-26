@@ -17,6 +17,8 @@ import { useWorkspace } from '../../context/WorkspaceContext';
 import { formatBytes } from '../../utils/formatters';
 import { StorageScannerModal } from '../drives/StorageScannerModal';
 import { DesktopInstallerModal } from '../desktop/DesktopInstallerModal';
+import { downloadProjectZip } from '../../utils/zipExporter';
+import { Archive } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const {
@@ -28,7 +30,8 @@ export const Header: React.FC = () => {
     simulateUnexpectedWrite,
     simulateNewSessionFiles,
     toggleDriveConnection,
-    setActiveTab
+    setActiveTab,
+    showToast
   } = useWorkspace();
 
   const [driveMenuOpen, setDriveMenuOpen] = useState(false);
@@ -195,6 +198,16 @@ export const Header: React.FC = () => {
         >
           <RefreshCw className="w-3.5 h-3.5 text-white" />
           <span className="hidden sm:inline">End Session Scan</span>
+        </button>
+
+        {/* Direct Download ZIP Button */}
+        <button
+          onClick={() => downloadProjectZip((msg) => showToast(msg, 'info'))}
+          title="Download the full source code as a .ZIP archive to build .EXE offline"
+          className="flex items-center gap-1.5 bg-[#1E1B4B] hover:bg-indigo-900 border border-[#FACC15]/80 text-[#FACC15] font-black px-3 py-1.5 rounded-2xl text-xs transition shadow-md"
+        >
+          <Archive className="w-3.5 h-3.5 text-[#FACC15]" />
+          <span className="hidden sm:inline">Export .ZIP</span>
         </button>
 
         {/* Install on Laptop (.EXE) Button */}
